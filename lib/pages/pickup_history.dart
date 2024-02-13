@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PickupHistory extends StatelessWidget {
-  final int index;
-
-  const PickupHistory({Key? key, required this.index}) : super(key: key);
+  const PickupHistory({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +54,6 @@ class PickupNotification extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Handle the tap, navigate to the detail page
         Navigator.push(
           context,
           MaterialPageRoute(

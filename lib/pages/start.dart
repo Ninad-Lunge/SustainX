@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sustain_x/pages/login.dart';
 
 class Start extends StatelessWidget {
-  const Start({Key? key, required this.index}) : super(key: key);
+  const Start({super.key});
 
-  final int index;
+  // final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -67,12 +66,7 @@ class Start extends StatelessWidget {
                     color: Color(0xFF1BE417),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Login(index: 0),
-                      ),
-                    );
+                    Navigator.pushNamed(context, '/login');
                   },
                 ),
               ],

@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sustain_x/pages/Register.dart';
-import 'package:sustain_x/pages/home.dart';
-
-//import 'home.dart';
 
 class Login extends StatelessWidget {
-  const Login({Key? key, required this.index}) : super(key: key);
-
-  final int index;
-
-  //TextEditingController myController()=> _ToDoPageState();
+  const Login({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -198,13 +190,7 @@ class Login extends StatelessWidget {
                       side: BorderSide(color: Colors.black), // Border color
                     ),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Home(
-                                  index: 0,
-                                )),
-                      );
+                      Navigator.pushNamed(context, '/home');
                     },
                     child: Text(
                       'Login',
@@ -240,13 +226,7 @@ class Login extends StatelessWidget {
                       side: BorderSide(color: Colors.black), // Border color
                     ),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Home(
-                                  index: 1,
-                                )),
-                      );
+                      Navigator.pushNamed(context, '/home');
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -277,11 +257,7 @@ class Login extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => Register(index: 0)),
-                    );
+                    Navigator.pushNamed(context, '/register');
                   },
                   child: Center(
                     child: Text(

@@ -1,33 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:sustain_x/pages/home.dart';
 
-//import 'home.dart';
-
-class Addlocation extends StatelessWidget {
-  const Addlocation({Key? key, required this.index}) : super(key: key);
-
-  final int index;
-
-  //TextEditingController myController()=> _ToDoPageState();
+class AddLocation extends StatelessWidget {
+  const AddLocation({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(),
-        body:
-            //const Padding(
-            //   padding: EdgeInsets.all(30.0),
-            //   child: Text('Add Location',style: TextStyle(fontSize: 40,fontFamily: 'Poppins',fontWeight: FontWeight.w500,color: Colors.green),),
-            // )
-            Padding(
+        body: Padding(
           padding: const EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 0.0),
           child: SingleChildScrollView(
               child: Container(
                   // width: 380,
                   // height: 700,
                   child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
                 children: [
@@ -187,10 +176,7 @@ class Addlocation extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => Home(
-                                    index: 0,
-                                  )),
+                          MaterialPageRoute(builder: (context) => Home()),
                         );
                       },
                       //},

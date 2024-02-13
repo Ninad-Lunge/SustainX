@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sustain_x/pages/settings.dart';
-import 'home.dart';
 
 class Notifications extends StatelessWidget {
-  final int index;
+  const Notifications({Key? key}) : super(key: key);
 
-  const Notifications({Key? key, required this.index}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +16,7 @@ class Notifications extends StatelessWidget {
             children: [
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0),
+                const EdgeInsets.symmetric(vertical: 0.0, horizontal: 0),
                 child: Text(
                   'Notifications',
                   style: TextStyle(
@@ -29,83 +26,41 @@ class Notifications extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10),
-              Notification(
+              NotificationWidget(
                   data:
-                      'Make your home trash free,\nGrab this opportunity now!!'),
+                  'Make your home trash free,\nGrab this opportunity now!!'),
               SizedBox(height: 10),
-              Notification(data: 'Go Green'),
+              NotificationWidget(data: 'Go Green'),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
-        child: Container(
-          child: BottomNavigationBar(
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.menu),
-                label: 'Menu',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.message_outlined),
-                label: 'Notification',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.settings_outlined),
-                label: 'Settings',
-              ),
-            ],
-            currentIndex: 1,
-            onTap: (int index) {
-              switch (index) {
-                case 0:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Home(
-                              index: 0,
-                            )),
-                  );
-                  break;
-                case 1:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Notifications(
-                              index: 1,
-                            )),
-                  );
-                  break;
-                case 2:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Settings(
-                              index: 2,
-                            )),
-                  );
-                  break;
-              }
-            },
-            elevation: 0.0,
-            backgroundColor: Colors.transparent,
-            selectedItemColor: Colors.green,
-          ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(17.0),
-            border: Border.all(color: Colors.black),
-          ),
-        ),
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentIndex: 1,
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              Navigator.of(context).popUntil((route) => route.isFirst);
+              Navigator.pushNamed(context, '/home');
+              break;
+            case 1:
+            // Do nothing, already on the notifications page
+              break;
+            case 2:
+              Navigator.of(context).popUntil((route) => route.isFirst);
+              Navigator.pushNamed(context, '/settings');
+              break;
+          }
+        },
       ),
     );
   }
 }
 
-class Notification extends StatelessWidget {
+class NotificationWidget extends StatelessWidget {
   final String data;
 
-  const Notification({Key? key, required this.data}) : super(key: key);
+  const NotificationWidget({Key? key, required this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -151,6 +106,51 @@ class Notification extends StatelessWidget {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class CustomBottomNavigationBar extends StatelessWidget {
+  final int currentIndex;
+  final Function(int) onTap;
+
+  const CustomBottomNavigationBar({
+    Key? key,
+    required this.currentIndex,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
+      child: Container(
+        child: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.menu),
+              label: 'Menu',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.message_outlined),
+              label: 'Notification',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings_outlined),
+              label: 'Settings',
+            ),
+          ],
+          currentIndex: currentIndex,
+          onTap: onTap,
+          elevation: 0.0,
+          backgroundColor: Colors.transparent,
+          selectedItemColor: Colors.green,
+        ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(17.0),
+          border: Border.all(color: Colors.black),
         ),
       ),
     );

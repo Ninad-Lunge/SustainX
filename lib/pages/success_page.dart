@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import 'home.dart';
-import 'settings.dart';
-import 'package:sustain_x/pages/notification.dart';
-
-class Successfullpage extends StatelessWidget {
-  const Successfullpage({Key? key, required this.index}) : super(key: key);
-
-  final int index;
-
-  //TextEditingController myController()=> _ToDoPageState();
+class SuccessPage extends StatelessWidget {
+  const SuccessPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +16,6 @@ class Successfullpage extends StatelessWidget {
           children: [
             Stack(
               children: [
-                // Background text with stroke
                 Center(
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(0.0, 100.0, 0.0, 0.0),
@@ -102,71 +93,14 @@ class Successfullpage extends StatelessWidget {
                     fit: BoxFit.contain,
                   ),
                 ),
+
+                FloatingActionButton(onPressed: () {
+                  Navigator.of(context).popUntil((route) => route.isFirst);
+                  Navigator.pushNamed(context, '/home');
+                })
               ],
             ),
           ],
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
-        child: Container(
-          child: BottomNavigationBar(
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.menu),
-                label: 'Menu',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.message_outlined),
-                label: 'Notification',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.settings_outlined),
-                label: 'Settings',
-              ),
-            ],
-            currentIndex: 0,
-            onTap: (int index) {
-              switch (index) {
-                case 0:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Home(
-                        index: 0,
-                      ),
-                    ),
-                  );
-                  break;
-                case 1:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Notifications(
-                              index: 1,
-                            )),
-                  );
-                  break;
-                case 2:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Settings(
-                        index: 2,
-                      ),
-                    ),
-                  );
-                  break;
-              }
-            },
-            elevation: 0.0,
-            backgroundColor: Colors.transparent,
-            selectedItemColor: Colors.green,
-          ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(17.0),
-            border: Border.all(color: Colors.black),
-          ),
         ),
       ),
     );

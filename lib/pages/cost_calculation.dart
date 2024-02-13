@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sustain_x/pages/settings.dart';
-import 'package:sustain_x/pages/notification.dart';
-
-import 'home.dart';
+// import 'bottom_navigation_bar.dart';
 
 class CostCalculation extends StatefulWidget {
-  const CostCalculation({Key? key, required this.index}) : super(key: key);
-
-  final int index;
+  const CostCalculation({super.key});
 
   @override
   _CostCalculationState createState() => _CostCalculationState();
@@ -24,6 +19,8 @@ class Item {
 class _CostCalculationState extends State<CostCalculation> {
   List<Item> selectedItems = []; // List to keep track of selected items
   double totalCost = 0.0; // Total cost variable
+
+  // int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -191,68 +188,29 @@ class _CostCalculationState extends State<CostCalculation> {
           ),
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
-        child: Container(
-          child: BottomNavigationBar(
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.menu),
-                label: 'Menu',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.message_outlined),
-                label: 'Notification',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.settings_outlined),
-                label: 'Settings',
-              ),
-            ],
-            currentIndex: 0,
-            onTap: (int index) {
-              switch (index) {
-                case 0:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Home(
-                        index: 0,
-                      ),
-                    ),
-                  );
-                  break;
-                case 1:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Notifications(
-                              index: 1,
-                            )),
-                  );
-                  break;
-                case 2:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Settings(
-                        index: 2,
-                      ),
-                    ),
-                  );
-                  break;
-              }
-            },
-            elevation: 0.0,
-            backgroundColor: Colors.transparent,
-            selectedItemColor: Colors.green,
-          ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(17.0),
-            border: Border.all(color: Colors.black),
-          ),
-        ),
-      ),
+      // bottomNavigationBar: CustomBottomNavigationBar(
+      //   currentIndex: _selectedIndex,
+      //   onTap: (index) {
+      //     setState(() {
+      //       _selectedIndex = index;
+      //     });
+      //
+      //     switch (index) {
+      //       case 0:
+      //         Navigator.of(context).popUntil((route) => route.isFirst);
+      //         Navigator.pushNamed(context, '/home');
+      //         break;
+      //       case 1:
+      //         Navigator.of(context).popUntil((route) => route.isFirst);
+      //         Navigator.pushNamed(context, '/notifications');
+      //         break;
+      //       case 2:
+      //         Navigator.of(context).popUntil((route) => route.isFirst);
+      //         Navigator.pushNamed(context, '/settings');
+      //         break;
+      //     }
+      //   },
+      // ),
     );
   }
 

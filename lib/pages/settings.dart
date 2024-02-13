@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
-import 'package:sustain_x/pages/notification.dart';
 
 class Settings extends StatelessWidget {
-  const Settings({super.key, required this.index});
-
-  final int index;
+  const Settings({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -184,31 +180,16 @@ class Settings extends StatelessWidget {
             onTap: (int index) {
               switch (index) {
                 case 0:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Home(
-                              index: 0,
-                            )),
-                  );
+                  Navigator.of(context).popUntil((route) => route.isFirst);
+                  Navigator.pushNamed(context, '/home');
                   break;
                 case 1:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Notifications(
-                              index: 1,
-                            )),
-                  );
+                  Navigator.of(context).popUntil((route) => route.isFirst);
+                  Navigator.pushNamed(context, '/notifications');
                   break;
                 case 2:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Settings(
-                              index: 2,
-                            )),
-                  );
+                  Navigator.of(context).popUntil((route) => route.isFirst);
+                  Navigator.pushNamed(context, '/settings');
                   break;
               }
             },

@@ -3,11 +3,7 @@ import 'package:sustain_x/pages/add_location.dart';
 //import 'home.dart';
 
 class Register extends StatelessWidget {
-  const Register({Key? key, required this.index}) : super(key: key);
-
-  final int index;
-
-  //TextEditingController myController()=> _ToDoPageState();
+  const Register({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -141,9 +137,7 @@ class Register extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Addlocation(
-                                          index: 1,
-                                        )),
+                                    builder: (context) => AddLocation()),
                               );
                             },
                             //},
@@ -190,9 +184,7 @@ class Register extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Addlocation(
-                                          index: 1,
-                                        )),
+                                    builder: (context) => AddLocation()),
                               );
                             },
                             child: Row(

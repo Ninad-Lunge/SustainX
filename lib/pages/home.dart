@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sustain_x/pages/settings.dart';
-import 'package:sustain_x/pages/schedulepickup.dart';
-import 'package:sustain_x/pages/price_enquiry.dart';
-import 'package:sustain_x/pages/costcalculation.dart';
-import 'package:sustain_x/pages/pickuphistory.dart';
-import 'package:sustain_x/pages/notification.dart';
 
 class Home extends StatelessWidget {
-  const Home({Key? key, required this.index}) : super(key: key);
-
-  final int index;
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,13 +64,7 @@ class Home extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: OutlinedButton(
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => SchedulePickup(
-                                            index: 1,
-                                          )),
-                                );
+                                Navigator.pushNamed(context, '/schedule_pickup');
                               },
                               child: Text(
                                 'Schedule a Free Pickup',
@@ -123,13 +109,7 @@ class Home extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: OutlinedButton(
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Price_Enquiry(
-                                            index: 1,
-                                          )),
-                                );
+                                Navigator.pushNamed(context, '/price_enquiry');
                               },
                               child: Text(
                                 'Price Enquiry',
@@ -179,13 +159,7 @@ class Home extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: OutlinedButton(
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => CostCalculation(
-                                            index: 1,
-                                          )),
-                                );
+                                Navigator.pushNamed(context, '/cost_calculation');
                               },
                               child: Text(
                                 'Price Your Trash',
@@ -230,13 +204,7 @@ class Home extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: OutlinedButton(
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => PickupHistory(
-                                            index: 1,
-                                          )),
-                                );
+                                Navigator.pushNamed(context, '/pickup_history');
                               },
                               child: Text(
                                 'My Pickups History',
@@ -282,31 +250,13 @@ class Home extends StatelessWidget {
             onTap: (int index) {
               switch (index) {
                 case 0:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Home(
-                              index: 0,
-                            )),
-                  );
+                  Navigator.pushNamed(context, '/home');
                   break;
                 case 1:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Notifications(
-                              index: 1,
-                            )),
-                  );
+                  Navigator.pushNamed(context, '/notifications');
                   break;
                 case 2:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Settings(
-                              index: 2,
-                            )),
-                  );
+                  Navigator.pushNamed(context, '/settings');
                   break;
               }
             },

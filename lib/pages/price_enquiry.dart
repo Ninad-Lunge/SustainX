@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Price_Enquiry extends StatelessWidget {
-  const Price_Enquiry({Key? key, required this.index}) : super(key: key);
-
-  final int index;
+  const Price_Enquiry({super.key});
 
   @override
   Widget build(BuildContext context) {

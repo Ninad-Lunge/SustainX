@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sustain_x/pages/settings.dart';
-import 'package:sustain_x/pages/successfullpage.dart';
-import 'package:sustain_x/pages/notification.dart';
-
-import 'home.dart';
 
 class SchedulePickup extends StatefulWidget {
-  const SchedulePickup({Key? key, required this.index}) : super(key: key);
-
-  final int index;
+  const SchedulePickup({super.key});
 
   @override
   _SchedulePickupState createState() => _SchedulePickupState();
@@ -189,14 +182,7 @@ class _SchedulePickupState extends State<SchedulePickup> {
                                 '\nLocation: ${locationController.text}';
                             print(pickupDetails);
 
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Successfullpage(
-                                  index: 1,
-                                ),
-                              ),
-                            );
+                            Navigator.pushNamed(context, '/success');
                           },
                           child: const Text(
                             'Schedule Pickup',
@@ -216,68 +202,48 @@ class _SchedulePickupState extends State<SchedulePickup> {
           ),
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
-        child: Container(
-          child: BottomNavigationBar(
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.menu),
-                label: 'Menu',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.message_outlined),
-                label: 'Notification',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.settings_outlined),
-                label: 'Settings',
-              ),
-            ],
-            currentIndex: 0,
-            onTap: (int index) {
-              switch (index) {
-                case 0:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Home(
-                        index: 0,
-                      ),
-                    ),
-                  );
-                  break;
-                case 1:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Notifications(
-                              index: 1,
-                            )),
-                  );
-                  break;
-                case 2:
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Settings(
-                        index: 2,
-                      ),
-                    ),
-                  );
-                  break;
-              }
-            },
-            elevation: 0.0,
-            backgroundColor: Colors.transparent,
-            selectedItemColor: Colors.green,
-          ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(17.0),
-            border: Border.all(color: Colors.black),
-          ),
-        ),
-      ),
+      // bottomNavigationBar: Padding(
+      //   padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
+      //   child: Container(
+      //     child: BottomNavigationBar(
+      //       items: [
+      //         BottomNavigationBarItem(
+      //           icon: Icon(Icons.menu),
+      //           label: 'Menu',
+      //         ),
+      //         BottomNavigationBarItem(
+      //           icon: Icon(Icons.message_outlined),
+      //           label: 'Notification',
+      //         ),
+      //         BottomNavigationBarItem(
+      //           icon: Icon(Icons.settings_outlined),
+      //           label: 'Settings',
+      //         ),
+      //       ],
+      //       currentIndex: 0,
+      //       onTap: (int index) {
+      //         switch (index) {
+      //           case 0:
+      //             Navigator.pushNamed(context, '/home');
+      //             break;
+      //           case 1:
+      //             Navigator.pushNamed(context, '/notifications');
+      //             break;
+      //           case 2:
+      //             Navigator.pushNamed(context, '/settings');
+      //             break;
+      //         }
+      //       },
+      //       elevation: 0.0,
+      //       backgroundColor: Colors.transparent,
+      //       selectedItemColor: Colors.green,
+      //     ),
+      //     decoration: BoxDecoration(
+      //       borderRadius: BorderRadius.circular(17.0),
+      //       border: Border.all(color: Colors.black),
+      //     ),
+      //   ),
+      // ),
     );
   }
 
