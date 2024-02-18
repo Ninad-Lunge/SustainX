@@ -160,8 +160,8 @@ class _SchedulePickupState extends State<SchedulePickup> {
                         padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.orange[300],
-                            onPrimary: Colors.black,
+                            foregroundColor: Colors.black,
+                            backgroundColor: Colors.orange[300],
                             side: const BorderSide(color: Colors.black),
                           ),
                           onPressed: () {
@@ -202,48 +202,6 @@ class _SchedulePickupState extends State<SchedulePickup> {
           ),
         ),
       ),
-      // bottomNavigationBar: Padding(
-      //   padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
-      //   child: Container(
-      //     child: BottomNavigationBar(
-      //       items: [
-      //         BottomNavigationBarItem(
-      //           icon: Icon(Icons.menu),
-      //           label: 'Menu',
-      //         ),
-      //         BottomNavigationBarItem(
-      //           icon: Icon(Icons.message_outlined),
-      //           label: 'Notification',
-      //         ),
-      //         BottomNavigationBarItem(
-      //           icon: Icon(Icons.settings_outlined),
-      //           label: 'Settings',
-      //         ),
-      //       ],
-      //       currentIndex: 0,
-      //       onTap: (int index) {
-      //         switch (index) {
-      //           case 0:
-      //             Navigator.pushNamed(context, '/home');
-      //             break;
-      //           case 1:
-      //             Navigator.pushNamed(context, '/notifications');
-      //             break;
-      //           case 2:
-      //             Navigator.pushNamed(context, '/settings');
-      //             break;
-      //         }
-      //       },
-      //       elevation: 0.0,
-      //       backgroundColor: Colors.transparent,
-      //       selectedItemColor: Colors.green,
-      //     ),
-      //     decoration: BoxDecoration(
-      //       borderRadius: BorderRadius.circular(17.0),
-      //       border: Border.all(color: Colors.black),
-      //     ),
-      //   ),
-      // ),
     );
   }
 

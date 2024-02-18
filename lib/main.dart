@@ -11,10 +11,11 @@ import 'package:sustain_x/pages/price_enquiry.dart';
 import 'package:sustain_x/pages/schedule_pickup.dart';
 import 'package:sustain_x/pages/settings.dart';
 import 'package:sustain_x/pages/start.dart';
+import 'package:sustain_x/pages/add_location.dart';
 import 'package:sustain_x/pages/success_page.dart';
 import 'package:sustain_x/pages/auth_page.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -33,18 +34,19 @@ class MyApp extends StatelessWidget {
       home: AuthPage(),
       // initialRoute: '/login',
       routes: {
-        // '/' : (context) => Start(),
-        '/home' : (context) => Home(),
-        '/login' : (context) => Login(),
-        '/register' : (context) => Register(),
-        '/settings' : (context) => Settings(),
-        '/price_enquiry' : (context) => Price_Enquiry(),
-        '/schedule_pickup' : (context) => SchedulePickup(),
-        '/success' : (context) => SuccessPage(),
-        '/notifications' : (context) => Notifications(),
-        '/cost_calculation' : (context) => CostCalculation(),
-        '/pickup_history' : (context) => PickupHistory(),
-        '/auth_page' : (context) => AuthPage(),
+        //'/': (context) => Start(),
+        '/home': (context) => Home(),
+        '/login': (context) => Login(),
+        '/register': (context) => Register(),
+        '/settings': (context) => Settings(),
+        '/price_enquiry': (context) => Price_Enquiry(),
+        '/schedule_pickup': (context) => SchedulePickup(),
+        '/success': (context) => SuccessPage(),
+        '/notifications': (context) => Notifications(),
+        '/cost_calculation': (context) => CostCalculation(),
+        '/pickup_history': (context) => PickupHistory(),
+        '/add_location': (context) => AddLocation(),
+        '/auth_page': (context) => AuthPage(),
       },
     );
   }

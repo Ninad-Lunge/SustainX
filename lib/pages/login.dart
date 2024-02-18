@@ -3,26 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:sustain_x/components/my_textfield.dart';
 import 'package:sustain_x/components/my_button.dart';
 
-
 class Login extends StatelessWidget {
   Login({super.key});
 
-  final emailController  = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   void signUserIn() async {
-    await FirebaseAuth.instance.
-    signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailController.text,
+      password: passwordController.text,
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(),
         body: Padding(
-          padding: const EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 20.0),
+          padding: const EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 10.0),
           child: SingleChildScrollView(
               child: Container(
                   child: Column(
@@ -146,7 +145,7 @@ class Login extends StatelessWidget {
               // Email textfield
               MyTextField(
                 controller: emailController,
-                hintText: 'Username',
+                hintText: 'Email',
                 obscureText: false,
               ),
 
@@ -162,9 +161,10 @@ class Login extends StatelessWidget {
               //Sign In Button
               MyButton(
                 onTap: signUserIn,
+                buttonText: 'Sign In',
               ),
 
-              const SizedBox(height: 50),
+              const SizedBox(height: 10),
 
               Center(
                 child: Text(
@@ -176,46 +176,43 @@ class Login extends StatelessWidget {
                       color: Colors.black),
                 ),
               ),
-
+              const SizedBox(height: 15),
               Container(
                 width: double.infinity,
-                height: 75,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 5.0),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.orange[300], // Background color
-                      onPrimary: Colors.black, // Text color
-                      side: BorderSide(color: Colors.black), // Border color
-                    ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/home');
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 10.0),
-                          child: Image.asset(
-                            'assets/images/google.png',
-                            width: 30,
-                            height: 30,
-                          ),
+                height: 55,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.black,
+                    backgroundColor: Colors.orange[300], // Text color
+                    side: BorderSide(color: Colors.black), // Border color
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/home');
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10.0),
+                        child: Image.asset(
+                          'assets/images/google.png',
+                          width: 25,
+                          height: 25,
                         ),
-                        Text(
-                          'Google',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w300,
-                          ),
+                      ),
+                      Text(
+                        'Google',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w300,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              const SizedBox(height: 50),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: GestureDetector(
@@ -227,12 +224,13 @@ class Login extends StatelessWidget {
                     children: [
                       Text(
                         'Not a member?',
-                        style: TextStyle(color: Colors.grey[700]),
+                        style: TextStyle(fontSize: 15, color: Colors.grey[700]),
                       ),
                       const SizedBox(width: 4),
                       const Text(
-                        'Register now',
+                        ' Register Now',
                         style: TextStyle(
+                          fontSize: 18,
                           color: Colors.blue,
                           fontWeight: FontWeight.bold,
                         ),

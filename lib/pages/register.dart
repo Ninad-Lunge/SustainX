@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:sustain_x/pages/add_location.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sustain_x/components/my_textfield.dart';
+import 'package:sustain_x/components/my_button.dart';
 //import 'home.dart';
 
 class Register extends StatelessWidget {
-  const Register({super.key});
+  Register({super.key});
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmpasswordController = TextEditingController();
+
+  void signUserUp() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailController.text,
+      password: passwordController.text,
+      // confirmpassword: confirmpasswordController.text,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,171 +60,79 @@ class Register extends StatelessWidget {
                           ),
                         ],
                       ),
-
-                      // Container(height: 30,),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
-                        child: TextField(
-                          keyboardType: TextInputType.text,
-                          decoration: InputDecoration(
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(21),
-                                borderSide: BorderSide(color: Colors.green)),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(21),
-                                borderSide: BorderSide(color: Colors.black)),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(21),
-                                borderSide: BorderSide(color: Colors.black)),
-                            labelText: "Email",
-                            hintText: 'Enter your email',
-                          ),
-                        ),
-                      ),
-                      // Container(height: 20,),
-
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
-                        child: TextField(
-                          obscureText: true,
-                          obscuringCharacter: '*',
-                          decoration: InputDecoration(
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(21),
-                                  borderSide: BorderSide(color: Colors.green)),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(21),
-                                  borderSide: BorderSide(color: Colors.black)),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(21),
-                                  borderSide: BorderSide(color: Colors.black)),
-                              labelText: "Password",
-                              hintText: 'Enter your password',
-                              suffixIcon: IconButton(
-                                icon: Icon(Icons.remove_red_eye_outlined),
-                                onPressed: () {},
-                              )
-                              //hoverColor: Colors.green,
-                              ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
-                        child: TextField(
-                          obscureText: true,
-                          obscuringCharacter: '*',
-                          decoration: InputDecoration(
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(21),
-                                  borderSide: BorderSide(color: Colors.green)),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(21),
-                                  borderSide: BorderSide(color: Colors.black)),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(21),
-                                  borderSide: BorderSide(color: Colors.black)),
-                              labelText: "Confirm Password",
-                              hintText: 'Enter your confirm password',
-                              suffixIcon: IconButton(
-                                icon: Icon(Icons.remove_red_eye_outlined),
-                                onPressed: () {},
-                              )
-
-                              //hoverColor: Colors.green,
-                              ),
-                        ),
-                      ),
                       Container(
-                        width: double.infinity,
-                        height: 85,
-                        child: Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.orange[300], // Background color
-                              onPrimary: Colors.black, // Text color
-                              side: BorderSide(
-                                  color: Colors.black), // Border color
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => AddLocation()),
-                              );
-                            },
-                            //},
-                            child: Text(
-                              'Next',
-                              style: TextStyle(
-                                fontSize: 23,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w300,
-                              ),
-                            ),
-                          ),
-                        ),
+                        height: 20,
                       ),
+                      MyTextField(
+                        controller: emailController,
+                        hintText: 'Email',
+                        obscureText: false,
+                      ),
+                      MyTextField(
+                        controller: passwordController,
+                        hintText: 'Password',
+                        obscureText: true,
+                      ),
+                      MyTextField(
+                        controller: confirmpasswordController,
+                        hintText: 'Confirm Password',
+                        obscureText: true,
+                      ),
+                      MyButton(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/add_location');
+                        },
+                        buttonText: 'Next',
+                      ),
+                      const SizedBox(height: 10),
                       Center(
-                        child: Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(.0, 30.0, 0.0, 0.0),
-                          child: Text(
-                            'Or continue with',
-                            style: TextStyle(
-                                fontSize: 15,
-                                fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black),
-                          ),
+                        child: Text(
+                          'Or continue with',
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black),
                         ),
                       ),
-
+                      const SizedBox(height: 15),
                       Container(
                         width: double.infinity,
-                        height: 75,
-                        child: Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.orange[300], // Background color
-                              onPrimary: Colors.black, // Text color
-                              side: BorderSide(
-                                  color: Colors.black), // Border color
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => AddLocation()),
-                              );
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 10.0),
-                                  child: Image.asset(
-                                    'assets/images/google.png',
-                                    width: 30,
-                                    height: 30,
-                                  ),
+                        height: 55,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: Colors.black,
+                            backgroundColor: Colors.orange[300], // Text color
+                            side:
+                                BorderSide(color: Colors.black), // Border color
+                          ),
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/home');
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 10.0),
+                                child: Image.asset(
+                                  'assets/images/google.png',
+                                  width: 25,
+                                  height: 25,
                                 ),
-                                Text(
-                                  'Sign in with Google',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontFamily: 'Poppins',
-                                    fontWeight: FontWeight.w300,
-                                  ),
+                              ),
+                              Text(
+                                'Google',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w300,
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
+                      const SizedBox(height: 10),
                     ],
                   ))),
         ));
