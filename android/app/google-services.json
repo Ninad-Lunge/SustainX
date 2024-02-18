@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "82501261467",
+    "project_id": "sustainx-9d820",
+    "storage_bucket": "sustainx-9d820.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:82501261467:android:0f7e4ae869f7b19a84ce3e",
+        "android_client_info": {
+          "package_name": "com.example.sustain_x"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCM2d_ioKhP7NmnW9gIu8thE0ghEhQD9yo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,8 +1,22 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:sustain_x/components/my_textfield.dart';
+import 'package:sustain_x/components/my_button.dart';
+
 
 class Login extends StatelessWidget {
-  const Login({super.key});
+  Login({super.key});
 
+  final emailController  = TextEditingController();
+  final passwordController = TextEditingController();
+
+  void signUserIn() async {
+    await FirebaseAuth.instance.
+    signInWithEmailAndPassword(
+        email: emailController.text,
+        password: passwordController.text,
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,80 +143,29 @@ class Login extends StatelessWidget {
                 ],
               ),
 
-              // Container(height: 30,),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-                child: TextField(
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(21),
-                        borderSide: BorderSide(color: Colors.green)),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(21),
-                        borderSide: BorderSide(color: Colors.black)),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(21),
-                        borderSide: BorderSide(color: Colors.black)),
-                    labelText: "Email",
-                    hintText: 'Enter your email',
-                  ),
-                ),
+              // Email textfield
+              MyTextField(
+                controller: emailController,
+                hintText: 'Username',
+                obscureText: false,
               ),
 
-              // Container(height: 20,),
+              const SizedBox(height: 10),
 
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-                child: TextField(
-                  obscureText: true,
-                  obscuringCharacter: '*',
-                  decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(21),
-                          borderSide: BorderSide(color: Colors.green)),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(21),
-                          borderSide: BorderSide(color: Colors.black)),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(21),
-                          borderSide: BorderSide(color: Colors.black)),
-                      labelText: "Password",
-                      hintText: 'Enter your password',
-                      suffixIcon: IconButton(
-                        icon: Icon(Icons.remove_red_eye_outlined),
-                        onPressed: () {},
-                      )
-                      //hoverColor: Colors.green,
-                      ),
-                ),
+              // password textfield
+              MyTextField(
+                controller: passwordController,
+                hintText: 'Password',
+                obscureText: true,
               ),
 
-              Container(
-                width: double.infinity,
-                height: 75,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.orange[300], // Background color
-                      onPrimary: Colors.black, // Text color
-                      side: BorderSide(color: Colors.black), // Border color
-                    ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/home');
-                    },
-                    child: Text(
-                      'Login',
-                      style: TextStyle(
-                        fontSize: 23,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w300,
-                      ),
-                    ),
-                  ),
-                ),
+              //Sign In Button
+              MyButton(
+                onTap: signUserIn,
               ),
+
+              const SizedBox(height: 50),
+
               Center(
                 child: Text(
                   'Or continue with',
@@ -240,7 +203,7 @@ class Login extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Sign in with Google',
+                          'Google',
                           style: TextStyle(
                             fontSize: 15,
                             fontFamily: 'Poppins',
@@ -252,23 +215,29 @@ class Login extends StatelessWidget {
                   ),
                 ),
               ),
-
+              const SizedBox(height: 50),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, '/register');
                   },
-                  child: Center(
-                    child: Text(
-                      'Register Now',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w700,
-                        color: Colors.blue,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Not a member?',
+                        style: TextStyle(color: Colors.grey[700]),
                       ),
-                    ),
+                      const SizedBox(width: 4),
+                      const Text(
+                        'Register now',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
