@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class SchedulePickup extends StatefulWidget {
@@ -15,6 +16,9 @@ class _SchedulePickupState extends State<SchedulePickup> {
   TextEditingController timeController = TextEditingController();
   TextEditingController locationController = TextEditingController();
 
+  final CollectionReference pickupsCollection =
+  FirebaseFirestore.instance.collection('pickups');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +32,7 @@ class _SchedulePickupState extends State<SchedulePickup> {
             children: [
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 00.0, horizontal: 0),
+                const EdgeInsets.symmetric(vertical: 00.0, horizontal: 0),
                 child: Text(
                   'Schedule a Free Pickup',
                   style: TextStyle(
@@ -164,7 +168,7 @@ class _SchedulePickupState extends State<SchedulePickup> {
                             onPrimary: Colors.black,
                             side: const BorderSide(color: Colors.black),
                           ),
-                          onPressed: () {
+                          onPressed: () async {
                             if (selectedDate == null ||
                                 selectedTime == null ||
                                 locationController.text.isEmpty) {
@@ -173,13 +177,16 @@ class _SchedulePickupState extends State<SchedulePickup> {
                               return;
                             }
 
+                            // Save pickup data to Firestore
+                            await savePickupData();
+
                             // Use selectedDate and selectedTime as needed
                             String pickupDetails = '';
                             pickupDetails += 'Date: ${selectedDate!.toLocal()}';
                             pickupDetails +=
-                                '\nTime: ${selectedTime!.format(context)}';
+                            '\nTime: ${selectedTime!.format(context)}';
                             pickupDetails +=
-                                '\nLocation: ${locationController.text}';
+                            '\nLocation: ${locationController.text}';
                             print(pickupDetails);
 
                             Navigator.pushNamed(context, '/success');
@@ -202,49 +209,20 @@ class _SchedulePickupState extends State<SchedulePickup> {
           ),
         ),
       ),
-      // bottomNavigationBar: Padding(
-      //   padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
-      //   child: Container(
-      //     child: BottomNavigationBar(
-      //       items: [
-      //         BottomNavigationBarItem(
-      //           icon: Icon(Icons.menu),
-      //           label: 'Menu',
-      //         ),
-      //         BottomNavigationBarItem(
-      //           icon: Icon(Icons.message_outlined),
-      //           label: 'Notification',
-      //         ),
-      //         BottomNavigationBarItem(
-      //           icon: Icon(Icons.settings_outlined),
-      //           label: 'Settings',
-      //         ),
-      //       ],
-      //       currentIndex: 0,
-      //       onTap: (int index) {
-      //         switch (index) {
-      //           case 0:
-      //             Navigator.pushNamed(context, '/home');
-      //             break;
-      //           case 1:
-      //             Navigator.pushNamed(context, '/notifications');
-      //             break;
-      //           case 2:
-      //             Navigator.pushNamed(context, '/settings');
-      //             break;
-      //         }
-      //       },
-      //       elevation: 0.0,
-      //       backgroundColor: Colors.transparent,
-      //       selectedItemColor: Colors.green,
-      //     ),
-      //     decoration: BoxDecoration(
-      //       borderRadius: BorderRadius.circular(17.0),
-      //       border: Border.all(color: Colors.black),
-      //     ),
-      //   ),
-      // ),
     );
+  }
+
+  Future<void> savePickupData() async {
+    try {
+      await pickupsCollection.add({
+        'date': selectedDate!.toLocal(),
+        'time': selectedTime!.format(context),
+        'location': locationController.text,
+      });
+    } catch (error) {
+      print("Error saving pickup data: $error");
+      // Handle error
+    }
   }
 
   Future<void> _selectDate(BuildContext context) async {

@@ -162,6 +162,7 @@ class Login extends StatelessWidget {
 
               //Sign In Button
               MyButton(
+                buttonText: 'Sign Up',
                 onTap: signUserIn,
               ),
 
