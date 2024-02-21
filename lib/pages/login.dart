@@ -10,6 +10,7 @@ class Login extends StatelessWidget {
   final emailController  = TextEditingController();
   final passwordController = TextEditingController();
 
+  // final Function()? onTap;
   void signUserIn() async {
     await FirebaseAuth.instance.
     signInWithEmailAndPassword(
@@ -161,6 +162,7 @@ class Login extends StatelessWidget {
 
               //Sign In Button
               MyButton(
+                buttonText: 'Sign Up',
                 onTap: signUserIn,
               ),
 
@@ -230,11 +232,14 @@ class Login extends StatelessWidget {
                         style: TextStyle(color: Colors.grey[700]),
                       ),
                       const SizedBox(width: 4),
-                      const Text(
-                        'Register now',
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
+                      GestureDetector(
+                        // onTap: widget.onTap,
+                        child: const Text(
+                          'Register now',
+                          style: TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ],
